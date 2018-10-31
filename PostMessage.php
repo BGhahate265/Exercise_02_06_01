@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html>
+<!--
+Author: Braddock Ghahate
+Date: 10.22.18
+File: PostMessage.php
+-->
 <head>
     <title>Post New Message</title>
     <meta name="viewport" content="initial-scale=1.0">
@@ -32,6 +37,7 @@
             $subject = "";
         }
         else {
+            //Put data entered into a delimited string array
             $messageRecord = "$subject~$name~$message\n";
         $fileHandle = fopen("message.txt", "ab");
         if (!$fileHandle) {

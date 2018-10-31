@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html>
+<!--
+Author: Braddock Ghahate
+Date: 10.22.18
+File: MessageBoard.php
+-->
 
 <head>
     <title>Message Board</title>

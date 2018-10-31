@@ -1,10 +1,30 @@
 <!DOCTYPE html>
 <html>
+<!--
+Author: Braddock Ghahate
+Date: 10.22.18
+File: PostGuest.php
+-->
 
 <head>
     <title>Post New Guest</title>
     <meta name="viewport" content="initial-scale=1.0">
     <script src="modernizr.custom.65897.js"></script>
+<!--Embedded CSS-->
+    <style>
+        h1, form, a {
+            font-family: sans-serif;
+        }
+        html {
+            background-color: cornflowerblue;
+        }
+        a:link {
+            color: black;
+        }
+        a:visited {
+            color: darkorchid;
+        }
+    </style>
 </head>
 
 <body>
@@ -25,12 +45,14 @@
                 $existingGuests[] = $currGuest[0];
             }
         }
+        //Bulletproving users from entering the same name
         if (in_array($guest, $existingGuests)) {
             echo "<p>The guest name <em>\"$guest\"</em> you entered already exists!<br>\n";
             echo "Please enter a new name and try again.<br>\n";
             echo "Your guest was not saved</p>";
             $guest = "";
         }
+        // Fail/success on tampering with user's disk drive to store text files
         else {
             $guestRecord = "$guest~$email\n";
         $fileHandle = fopen("guest.txt", "ab");

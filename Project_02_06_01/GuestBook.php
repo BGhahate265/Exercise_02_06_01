@@ -1,10 +1,30 @@
 <!DOCTYPE html>
 <html>
+<!--
+Author: Braddock Ghahate
+Date: 10.22.18
+File: GuestBook.php
+-->
 
 <head>
     <title>Guest Board</title>
     <meta name="viewport" content="initial-scale=1.0">
     <script src="modernizr.custom.65897.js"></script>
+<!--Embedded CSS-->
+    <style>
+        td, a {
+            font-family: sans-serif;
+        }
+        html {
+            background-color: cornflowerblue;
+        }
+        a:link {
+            color: black;
+        }
+        a:visited {
+            color: darkorchid;
+        }
+    </style>
 </head>
 
 <body>
@@ -14,6 +34,7 @@
     if (isset($_GET['action'])) {
        if (file_exists("guest.txt") && filesize("guest.txt") != 0) {
         $guestArray = file("guest.txt");
+           //A switch to manipulating the array to either deleting first, last, or a specific element within the array
             switch ($_GET['action']) {
             case 'Delete First':
                 array_shift($guestArray);
@@ -31,6 +52,7 @@
                     array_splice($guestArray, $_GET['guest'], 1);
                     break;
             }
+           //Implementing file behavior on the user's hard drive for storing the files
            if(count($guestArray) > 0) {
                $newGuest = implode($guestArray);
                $fileHandle = fopen("guest.txt", "wb");
@@ -60,8 +82,10 @@
         } 
         $index = 1;
         $key = key($keyGuestArray);
+        //go through the array of text file to display in the document
         foreach ($keyGuestArray as $guests) {
             $currGuest = explode("~", $guests);
+            //HTML mode in php to display a table with the elements from the text files
             echo "<tr>\n";
             echo "<td width=\"5%\" style=\"text-align: center; font-weight: bold\">" . $index . "</td>\n";
             echo "<td width=\"85%\"><span style=\"font-weight: bold\">Guest: </span>" . htmlentities($key) . "<br>\n";
